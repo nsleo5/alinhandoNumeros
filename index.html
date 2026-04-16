@@ -132,8 +132,8 @@
     var lines = raw.split('\n').map(function(l){ return l.trim(); }).filter(function(l){ return l.length > 0; });
     var nums = [];
     for (var i = 0; i < lines.length; i++) {
-      var match = lines[i].match(/\d+/);
-      if (match) nums.push({ line: lines[i], num: parseInt(match[0], 10) });
+      var match = lines[i].match(/^(\d+)/);
+      if (match) nums.push({ line: lines[i], num: parseInt(match[1], 10) });
     }
     return nums;
   }
