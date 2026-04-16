@@ -6,7 +6,6 @@
 <title>Extrator de Coluna</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: #f5f5f3;
@@ -17,7 +16,6 @@
     justify-content: center;
     padding: 2rem 1rem;
   }
-
   .card {
     background: #ffffff;
     border-radius: 16px;
@@ -26,124 +24,63 @@
     width: 100%;
     max-width: 640px;
   }
-
-  h1 {
-    font-size: 20px;
-    font-weight: 500;
-    margin-bottom: 4px;
-    color: #1a1a18;
-  }
-
-  .subtitle {
-    font-size: 13px;
-    color: #888780;
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
-  }
-
-  label {
-    display: block;
-    font-size: 13px;
-    color: #5f5e5a;
-    margin-bottom: 6px;
-  }
-
+  h1 { font-size: 20px; font-weight: 500; margin-bottom: 4px; color: #1a1a18; }
+  .subtitle { font-size: 13px; color: #888780; margin-bottom: 1.5rem; line-height: 1.5; }
+  label { display: block; font-size: 13px; color: #5f5e5a; margin-bottom: 6px; }
   textarea {
-    width: 100%;
-    min-height: 180px;
-    font-family: 'Courier New', monospace;
-    font-size: 13px;
-    padding: 10px 12px;
-    border-radius: 8px;
+    width: 100%; min-height: 180px;
+    font-family: 'Courier New', monospace; font-size: 13px;
+    padding: 10px 12px; border-radius: 8px;
     border: 0.5px solid rgba(0,0,0,0.2);
-    background: #fafaf8;
-    color: #1a1a18;
-    resize: vertical;
-    outline: none;
-    transition: border-color 0.15s;
+    background: #fafaf8; color: #1a1a18;
+    resize: vertical; outline: none; transition: border-color 0.15s;
   }
-
-  textarea:focus {
-    border-color: rgba(0,0,0,0.4);
-    background: #fff;
-  }
-
-  .actions {
-    display: flex;
-    gap: 8px;
-    margin: 1rem 0;
-  }
-
+  textarea:focus { border-color: rgba(0,0,0,0.4); background: #fff; }
+  .actions { display: flex; gap: 8px; margin: 1rem 0; }
   button {
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 14px;
-    padding: 8px 18px;
-    border-radius: 8px;
+    cursor: pointer; font-family: inherit; font-size: 14px;
+    padding: 8px 18px; border-radius: 8px;
     border: 0.5px solid rgba(0,0,0,0.2);
-    background: transparent;
-    color: #1a1a18;
+    background: transparent; color: #1a1a18;
     transition: background 0.12s, transform 0.08s;
   }
-
   button:hover { background: #f1efe8; }
   button:active { transform: scale(0.98); }
-
-  button.primary {
-    flex: 1;
-    background: #1a1a18;
-    color: #fff;
-    border-color: transparent;
-  }
-
+  button.primary { flex: 1; background: #1a1a18; color: #fff; border-color: transparent; }
   button.primary:hover { background: #2c2c2a; }
-
-  .result-area {
-    display: none;
-    margin-top: 1.25rem;
-  }
-
-  .result-row {
-    display: flex;
-    gap: 8px;
-    align-items: stretch;
-  }
-
+  .result-area { display: none; margin-top: 1.25rem; }
+  .result-row { display: flex; gap: 8px; align-items: stretch; }
   .output {
-    flex: 1;
-    font-family: 'Courier New', monospace;
-    font-size: 13px;
-    padding: 10px 12px;
-    background: #f1efe8;
-    border: 0.5px solid rgba(0,0,0,0.1);
-    border-radius: 8px;
-    word-break: break-all;
-    line-height: 1.7;
-    color: #1a1a18;
+    flex: 1; font-family: 'Courier New', monospace; font-size: 13px;
+    padding: 10px 12px; background: #f1efe8;
+    border: 0.5px solid rgba(0,0,0,0.1); border-radius: 8px;
+    word-break: break-all; line-height: 1.7; color: #1a1a18;
   }
-
-  .stats {
-    margin-top: 8px;
-    font-size: 12px;
-    color: #888780;
-  }
-
+  .stats { margin-top: 8px; font-size: 12px; color: #888780; }
   .error {
-    display: none;
-    margin-top: 10px;
-    padding: 10px 12px;
-    background: #fcebeb;
-    border: 0.5px solid #f09595;
-    border-radius: 8px;
-    font-size: 13px;
-    color: #a32d2d;
+    display: none; margin-top: 10px; padding: 10px 12px;
+    background: #fcebeb; border: 0.5px solid #f09595;
+    border-radius: 8px; font-size: 13px; color: #a32d2d;
   }
+  .preview-box {
+    display: none; margin-top: 1rem;
+    border: 0.5px solid rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;
+  }
+  .preview-header {
+    font-size: 12px; color: #5f5e5a; padding: 6px 12px;
+    background: #f1efe8; border-bottom: 0.5px solid rgba(0,0,0,0.08);
+  }
+  .preview-list {
+    font-family: 'Courier New', monospace; font-size: 12px;
+    color: #888780; padding: 8px 12px; line-height: 1.8; max-height: 120px; overflow-y: auto;
+  }
+  .preview-list span.num { color: #1a1a18; font-weight: 500; }
 
   @media (prefers-color-scheme: dark) {
     body { background: #1a1a18; color: #f1efe8; }
     .card { background: #2c2c2a; border-color: rgba(255,255,255,0.1); }
     h1 { color: #f1efe8; }
-    .subtitle { color: #888780; }
+    .subtitle, .stats { color: #888780; }
     label { color: #b4b2a9; }
     textarea { background: #1a1a18; color: #f1efe8; border-color: rgba(255,255,255,0.15); }
     textarea:focus { background: #222220; border-color: rgba(255,255,255,0.3); }
@@ -152,18 +89,26 @@
     button.primary { background: #f1efe8; color: #1a1a18; }
     button.primary:hover { background: #d3d1c7; }
     .output { background: #222220; border-color: rgba(255,255,255,0.08); color: #f1efe8; }
-    .stats { color: #888780; }
     .error { background: #2c1515; border-color: #791f1f; color: #f09595; }
+    .preview-box { border-color: rgba(255,255,255,0.08); }
+    .preview-header { background: #222220; color: #b4b2a9; border-color: rgba(255,255,255,0.06); }
+    .preview-list { color: #888780; }
+    .preview-list span.num { color: #f1efe8; }
   }
 </style>
 </head>
 <body>
 <div class="card">
   <h1>Extrator de coluna</h1>
-  <p class="subtitle">Cole uma tabela copiada do navegador e receba os valores da primeira coluna compactados em sequências.</p>
+  <p class="subtitle">Cole uma tabela copiada do navegador. A ferramenta extrai o primeiro número inteiro de cada linha e devolve o resultado compactado em sequências.</p>
 
   <label for="input">Tabela copiada</label>
-  <textarea id="input" placeholder="Cole aqui o conteúdo copiado da tabela (Ctrl+V)..."></textarea>
+  <textarea id="input" placeholder="Cole aqui o conteúdo copiado da tabela (Ctrl+V)..." oninput="previewNumbers()"></textarea>
+
+  <div id="preview-box" class="preview-box">
+    <div class="preview-header">Números detectados por linha (prévia)</div>
+    <div id="preview-list" class="preview-list"></div>
+  </div>
 
   <div class="actions">
     <button class="primary" onclick="extract()">Extrair e compactar</button>
@@ -183,81 +128,96 @@
 </div>
 
 <script>
-function extract() {
-  const raw = document.getElementById('input').value.trim();
-  const errEl = document.getElementById('error');
-  const resEl = document.getElementById('result-area');
-  errEl.style.display = 'none';
-  resEl.style.display = 'none';
-
-  if (!raw) {
-    errEl.textContent = 'Cole o conteúdo de uma tabela antes de extrair.';
-    errEl.style.display = 'block';
-    return;
-  }
-
-  const lines = raw.split('\n').map(l => l.trim()).filter(l => l.length > 0);
-  const nums = [];
-
-  for (const line of lines) {
-    const firstCell = line.split('\t')[0].trim().replace(/[^\d-]/g, '');
-    const n = parseInt(firstCell, 10);
-    if (!isNaN(n)) nums.push(n);
-  }
-
-  if (nums.length === 0) {
-    errEl.textContent = 'Nenhum número inteiro encontrado na primeira coluna. Verifique se a tabela foi copiada corretamente (as colunas devem ser separadas por tabulação).';
-    errEl.style.display = 'block';
-    return;
-  }
-
-  const unique = [...new Set(nums)].sort((a, b) => a - b);
-  const result = compact(unique);
-
-  document.getElementById('output').textContent = result;
-  document.getElementById('stats').textContent =
-    unique.length + ' valor' + (unique.length !== 1 ? 'es' : '') + ' encontrado' + (unique.length !== 1 ? 's' : '') + ' → resultado compactado';
-  resEl.style.display = 'block';
-  document.getElementById('btn-copy').textContent = 'Copiar';
-}
-
-function compact(sorted) {
-  if (sorted.length === 0) return '';
-  const parts = [];
-  let start = sorted[0];
-  let end = sorted[0];
-
-  for (let i = 1; i < sorted.length; i++) {
-    if (sorted[i] === end + 1) {
-      end = sorted[i];
-    } else {
-      if (start === end) parts.push('' + start);
-      else if (start + 1 === end) parts.push(start + ',' + end);
-      else parts.push(start + '-' + end);
-      start = sorted[i];
-      end = sorted[i];
+  function getNumbers(raw) {
+    var lines = raw.split('\n').map(function(l){ return l.trim(); }).filter(function(l){ return l.length > 0; });
+    var nums = [];
+    for (var i = 0; i < lines.length; i++) {
+      var match = lines[i].match(/\d+/);
+      if (match) nums.push({ line: lines[i], num: parseInt(match[0], 10) });
     }
+    return nums;
   }
-  if (start === end) parts.push('' + start);
-  else if (start + 1 === end) parts.push(start + ',' + end);
-  else parts.push(start + '-' + end);
-  return parts.join(',');
-}
 
-function copyResult() {
-  const text = document.getElementById('output').textContent;
-  navigator.clipboard.writeText(text).then(function() {
-    var btn = document.getElementById('btn-copy');
-    btn.textContent = 'Copiado!';
-    setTimeout(function() { btn.textContent = 'Copiar'; }, 1500);
-  });
-}
+  function previewNumbers() {
+    var raw = document.getElementById('input').value.trim();
+    var box = document.getElementById('preview-box');
+    var list = document.getElementById('preview-list');
+    if (!raw) { box.style.display = 'none'; return; }
+    var items = getNumbers(raw);
+    if (items.length === 0) { box.style.display = 'none'; return; }
+    var html = '';
+    var shown = items.slice(0, 8);
+    for (var i = 0; i < shown.length; i++) {
+      var linePreview = shown[i].line.length > 40 ? shown[i].line.substring(0, 40) + '…' : shown[i].line;
+      html += linePreview.replace(String(shown[i].num), '<span class="num">' + shown[i].num + '</span>') + '<br>';
+    }
+    if (items.length > 8) html += '<span style="color:#b4b2a9">… e mais ' + (items.length - 8) + ' linha(s)</span>';
+    list.innerHTML = html;
+    box.style.display = 'block';
+  }
 
-function clearAll() {
-  document.getElementById('input').value = '';
-  document.getElementById('result-area').style.display = 'none';
-  document.getElementById('error').style.display = 'none';
-}
+  function extract() {
+    var raw = document.getElementById('input').value.trim();
+    var errEl = document.getElementById('error');
+    var resEl = document.getElementById('result-area');
+    errEl.style.display = 'none';
+    resEl.style.display = 'none';
+
+    if (!raw) {
+      errEl.textContent = 'Cole o conteúdo de uma tabela antes de extrair.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    var items = getNumbers(raw);
+    if (items.length === 0) {
+      errEl.textContent = 'Nenhum número inteiro encontrado. Verifique se a tabela foi colada corretamente.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    var nums = items.map(function(i){ return i.num; });
+    var unique = nums.filter(function(v, i, a){ return a.indexOf(v) === i; }).sort(function(a,b){ return a-b; });
+    var result = compact(unique);
+
+    document.getElementById('output').textContent = result;
+    document.getElementById('stats').textContent =
+      unique.length + ' valor' + (unique.length !== 1 ? 'es' : '') + ' encontrado' + (unique.length !== 1 ? 's' : '') + ' → resultado compactado';
+    resEl.style.display = 'block';
+    document.getElementById('btn-copy').textContent = 'Copiar';
+  }
+
+  function compact(sorted) {
+    if (sorted.length === 0) return '';
+    var parts = [];
+    var start = sorted[0], end = sorted[0];
+    for (var i = 1; i < sorted.length; i++) {
+      if (sorted[i] === end + 1) {
+        end = sorted[i];
+      } else {
+        parts.push(start === end ? '' + start : (start + 1 === end ? start + ',' + end : start + '-' + end));
+        start = sorted[i]; end = sorted[i];
+      }
+    }
+    parts.push(start === end ? '' + start : (start + 1 === end ? start + ',' + end : start + '-' + end));
+    return parts.join(',');
+  }
+
+  function copyResult() {
+    var text = document.getElementById('output').textContent;
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = document.getElementById('btn-copy');
+      btn.textContent = 'Copiado!';
+      setTimeout(function(){ btn.textContent = 'Copiar'; }, 1500);
+    });
+  }
+
+  function clearAll() {
+    document.getElementById('input').value = '';
+    document.getElementById('result-area').style.display = 'none';
+    document.getElementById('error').style.display = 'none';
+    document.getElementById('preview-box').style.display = 'none';
+  }
 </script>
 </body>
 </html>
